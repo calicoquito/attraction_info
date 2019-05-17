@@ -51,7 +51,7 @@ class _MyHomePageState extends State<MyHomePage> {
   var _mytitle = "placholder";
   var rng = new Random();
   Future<String> getData() async {
-
+    
     http.Response response = await http.get(
       
       Uri.encodeFull("https://jsonplaceholder.typicode.com/posts"),
@@ -60,13 +60,33 @@ class _MyHomePageState extends State<MyHomePage> {
       }
       
       );
-  
-
+      // http.Response response2 = await http.get(
+      
+      // Uri.encodeFull("https://raw.githubusercontent.com/arawakcaribbean/insomia_profile/master/arawak_insomia_profile.json"),
+      // headers: {
+      //   "Accept": "application/json"
+      // }
+      
+      // );
   
   List data = jsonDecode(response.body);
-
-   _mytitle = data[rng.nextInt(5)]["title"];
+  setState(() {
+      _mytitle = data[rng.nextInt(5)]["title"];
+    });
    print(_mytitle);
+  }
+
+  int _counter = 0;
+  void _incrementCounter() {
+    setState(() {
+      // This call to setState tells the Flutter framework that something has
+      // changed in this State, which causes it to rerun the build method below
+      // so that the display can reflect the updated values. If we changed
+      // _counter without calling setState(), then the build method would not be
+      // called again, and so nothing would appear to happen.
+      _counter++;
+      
+    });
   }
 
   @override
@@ -105,10 +125,10 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              'You have pushed the button this many times:',
+              'Text from the rest api',
             ),
             Text(
-              '$_mytitle',
+              _mytitle,
               style: Theme.of(context).textTheme.display1,
             ),
           ],
