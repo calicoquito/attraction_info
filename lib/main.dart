@@ -73,7 +73,7 @@ class _MyHomePageState extends State<MyHomePage> {
   setState(() {
       _mytitle = data[rng.nextInt(5)]["title"];
     });
-   print(_mytitle);
+
   }
 
   int _counter = 0;
